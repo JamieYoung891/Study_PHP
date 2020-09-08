@@ -41,8 +41,11 @@ function print_nav() {
       <a href="./create.php">Create</a>
     </section>
     <section>
-      <h2><?php print_title(); ?></h2>
-      <p><?php print_content(); ?></p>
+      <form action='./create_process.php' method='post'>
+        <h2><input type='text' name='title' placeholder='Title' /></h2>
+        <p><textarea name='content' placeholder="Content"></textarea></p>
+        <input type="submit" />
+      </form>
     </section>
   </main>
 </body>

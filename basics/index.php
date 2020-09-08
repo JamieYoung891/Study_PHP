@@ -9,9 +9,17 @@
 <body>
     <h1><a href="./">WEB</a></h1>
     <ol>
-        <li><a href="./?id=HTML">HTML</a></li>
-        <li><a href="./?id=CSS">CSS</a></li>
-        <li><a href="./?id=JavaScript">JavaScript</a></li>
+        <?php
+        $list = scandir('data');
+        for ($i = 0; $i < count($list); $i++) {
+            $key = $list[$i];
+            if ($key === '.' || $key === '..') continue;
+            else
+        ?>
+            <li><a href="./?id=<?= $key ?>"><?= $key ?></a></li>
+        <?php
+        }
+        ?>
     </ol>
     <h2>
         <?php

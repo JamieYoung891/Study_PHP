@@ -39,14 +39,14 @@ function print_nav() {
   <main>
     <section>
       <a href="./create.php">Create</a>
-      <?php if (isset($_GET['id'])) { ?>
-        <a href="./update.php?id=<?= $_GET['id'] ?>">Update</a>
-        <a href="./delete.php?id=<?= $_GET['id'] ?>">Delete</a>
-      <?php } ?>
     </section>
     <section>
-      <h2><?php print_title(); ?></h2>
-      <p><?php print_content(); ?></p>
+      <form action='./delete_process.php' method='post'>
+        <input type='hidden' name='title' value=<?= $_GET['id'] ?> />
+        <h2><?= print_title() ?></h2>
+        <p><?= print_content() ?></p>
+        <p>Do you really want to <b>delete</b> this content? <input type="submit" name='toDelete' value="Yes" /> <input type="submit" name='toDelete' value="No" /></p>
+      </form>
     </section>
   </main>
 </body>

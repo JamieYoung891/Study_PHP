@@ -39,14 +39,18 @@ function print_nav() {
   <main>
     <section>
       <a href="./create.php">Create</a>
-      <?php if (isset($_GET['id'])) { ?>
-        <a href="./update.php?id=<?= $_GET['id'] ?>">Update</a>
-        <a href="./delete.php?id=<?= $_GET['id'] ?>">Delete</a>
-      <?php } ?>
     </section>
     <section>
-      <h2><?php print_title(); ?></h2>
-      <p><?php print_content(); ?></p>
+      <form action='./update_process.php' method='post'>
+        <input type='hidden' name='title_old' value=<?= $_GET['id'] ?> />
+        <h2>
+          <input type='text' name='title_new' placeholder='Title' value='<?= print_title() ?>' />
+        </h2>
+        <p>
+          <textarea name='content_new' placeholder="Content"><?= print_content() ?></textarea>
+        </p>
+        <input type="submit" />
+      </form>
     </section>
   </main>
 </body>

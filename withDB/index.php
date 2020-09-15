@@ -1,3 +1,15 @@
+<?php
+require_once('./db/use_mysql.php');
+
+$sql = "SELECT * FROM topic";
+$result = mysqli_query($conn, $sql);
+$list = '';
+while ($row = mysqli_fetch_array($result)) {
+  $list = $list . "<li><a href='./?id={$row['id']}'>{$row['title']}</a></li>";
+};
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,9 +23,14 @@
     <h1>WEB</h1>
   </header>
   <nav>
-    <ol>
-      <li>HTML</li>
-    </ol>
+    <section>
+      <ol>
+        <?= $list ?>
+      </ol>
+    </section>
+    <section>
+      <a href='./create.php'>Create</a>
+    </section>
   </nav>
   <main>
     <h2>Welcome</h2>

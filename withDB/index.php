@@ -8,6 +8,19 @@ while ($row = mysqli_fetch_array($result)) {
   $list = $list . "<li><a href='./?id={$row['id']}'>{$row['title']}</a></li>";
 };
 
+$article = array(
+  'title' => 'Welcome',
+  'description' => 'Hello, World!',
+);
+
+if (isset($_GET['id'])) {
+  $sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
+
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  $article['title'] = $row['title'];
+  $aritcle['description'] = $row['description'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +33,7 @@ while ($row = mysqli_fetch_array($result)) {
 
 <body>
   <header>
-    <h1>WEB</h1>
+    <h1><a href='./'>WEB</a></h1>
   </header>
   <nav>
     <section>
@@ -33,8 +46,8 @@ while ($row = mysqli_fetch_array($result)) {
     </section>
   </nav>
   <main>
-    <h2>Welcome</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eligendi reprehenderit labore laborum. Exercitationem distinctio quae iusto labore ad tempore fugit repellat velit odio deleniti omnis quis sunt qui cumque tempora, soluta mollitia repellendus perferendis sit. Obcaecati voluptate corporis explicabo dolore cum commodi accusantium nobis eaque. Neque impedit ullam delectus perspiciatis quo sit deserunt esse voluptate itaque, qui eveniet beatae ad amet asperiores voluptas ab molestias voluptatibus, consequuntur nemo hic laboriosam velit quaerat! Vel asperiores alias minus esse enim? Aspernatur molestias dicta perspiciatis consequatur, hic ea quasi doloribus totam nemo, rerum quam quia obcaecati necessitatibus? Error fugiat dolorem itaque inventore!</p>
+    <h2><?= $article['title'] ?></h2>
+    <p><?= $article['description'] ?></p>
   </main>
 </body>
 

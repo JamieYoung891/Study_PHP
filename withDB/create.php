@@ -1,3 +1,28 @@
+<?php
+require_once('./db/use_mysql.php');
+
+$sql = "SELECT * FROM topic";
+$result = mysqli_query($conn, $sql);
+$list = '';
+while ($row = mysqli_fetch_array($result)) {
+  $list = $list . "<li><a href='./?id={$row['id']}'>{$row['title']}</a></li>";
+};
+
+$article = array(
+  'title' => 'Welcome',
+  'description' => 'Hello, World!',
+);
+
+if (isset($_GET['id'])) {
+  $sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
+
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  $article['title'] = $row['title'];
+  $aritcle['description'] = $row['description'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,12 +33,12 @@
 
 <body>
   <header>
-    <h1>WEB</h1>
+    <h1><a href='./'>WEB</a></h1>
   </header>
   <nav>
     <section>
       <ol>
-        <li>HTML</li>
+        <?= $list ?>
       </ol>
     </section>
     <section>

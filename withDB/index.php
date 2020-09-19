@@ -14,6 +14,11 @@ $article = array(
   'description' => 'Hello, World!',
 );
 
+$nav = array(
+  'create_link' => "<a href='./create.php'>Create</a>",
+  'update_link' => ""
+);
+
 if (isset($_GET['id'])) {
   $sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
 
@@ -21,6 +26,8 @@ if (isset($_GET['id'])) {
   $row = mysqli_fetch_array($result);
   $article['title'] = htmlspecialchars($row['title']);
   $article['description'] = htmlspecialchars($row['description']);
+
+  $nav['update_link'] = "<a href='./update.php?id={$_GET['id']}'>Update</a>";
 }
 ?>
 
@@ -43,7 +50,8 @@ if (isset($_GET['id'])) {
       </ol>
     </section>
     <section>
-      <a href='./create.php'>Create</a>
+      <?= $nav['create_link'] ?>
+      <?= $nav['update_link'] ?>
     </section>
   </nav>
   <main>

@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   $article['title'] = $row['title'];
-  $aritcle['description'] = $row['description'];
+  $article['description'] = $row['description'];
 }
 ?>
 

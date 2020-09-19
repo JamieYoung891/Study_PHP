@@ -16,7 +16,8 @@ $article = array(
 
 $nav = array(
   'create_link' => "<a href='./create.php'>Create</a>",
-  'update_link' => ""
+  'update_link' => "",
+  'delete_link' => ""
 );
 
 if (isset($_GET['id'])) {
@@ -28,6 +29,7 @@ if (isset($_GET['id'])) {
   $article['description'] = htmlspecialchars($row['description']);
 
   $nav['update_link'] = "<a href='./update.php?id={$_GET['id']}'>Update</a>";
+  $nav['delete_link'] = "<a href='./delete.php?id={$_GET['id']}'>Delete</a>";
 }
 ?>
 
@@ -52,6 +54,7 @@ if (isset($_GET['id'])) {
     <section>
       <?= $nav['create_link'] ?>
       <?= $nav['update_link'] ?>
+      <?= $nav['delete_link'] ?>
     </section>
   </nav>
   <main>

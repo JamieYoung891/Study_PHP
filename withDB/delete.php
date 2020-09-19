@@ -58,8 +58,16 @@ if (isset($_GET['id'])) {
     </section>
   </nav>
   <main>
-    <h2><?= $article['title'] ?></h2>
-    <p><?= $article['description'] ?></p>
+    <article>
+      <h2><?= $article['title'] ?></h2>
+      <p><?= $article['description'] ?></p>
+    </article>
+    <form action='process_delete.php' method='POST'>
+      <b>Do you really want to delete this article? </b>
+      <input type='hidden' name='id' value='<?=$_GET['id']?>' />
+      <input type='submit' name='to_delete' value='YES' />
+      <input type='submit' name='to_delete' value='NO' />
+    </form>
   </main>
 </body>
 
